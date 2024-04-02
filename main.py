@@ -5,7 +5,7 @@ import sys
 from aiogram import Dispatcher, Bot
 from aiogram.enums import ParseMode
 
-from src.EnvManager import EnvManager
+from src.utils import EnvManager
 from src.handlers import router
 
 
