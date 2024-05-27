@@ -1,11 +1,23 @@
 version: '3.7'
 
 
-networks:
-    default:
-
-
 services:
+
+    bot:
+        build: .
+        restart: always
+        depends_on:
+            - redis
+        env_file:
+            - .env
+        environment:
+            TZ: UTC
+            REDIS_URL: redis://redis:6379/0
+            _TOKEN: <YOUR_TOKEN>
+        volumes:
+            - .:/app
+        networks:
+            - my_network
 
     redis:
         image: "redis:alpine"
@@ -14,18 +26,10 @@ services:
             TZ: UTC
         ports:
             - "6379:6379"
-
-    bot:
-        build: .
-        restart: always
-        depends_on:
-            - redis
-        env_file:
-            -   .env
-        environment:
-            TZ: UTC
-            REDIS_URL: redis://redis:6379/0
-        volumes:
-            - .:/app
         networks:
-            - default
+            - my_network
+
+
+networks:
+  my_network:
+    external: false
