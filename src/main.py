@@ -9,7 +9,6 @@ from aiogram.fsm.storage.redis import RedisStorage
 from aiogram.types import BotCommand
 
 from config import settings
-from fixtures import on_start_up
 from handlers import get_dispatcher
 import texts.alerts
 
@@ -24,7 +23,6 @@ async def main():
         BotCommand(command="alerts", description=texts.alerts.ALERTS_COMMAND),
         BotCommand(command="cancel", description=texts.alerts.CANCEL_COMMAND),
     ])
-    await on_start_up(dp)
     await dp.start_polling(bot)
 
 

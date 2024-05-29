@@ -1,3 +1,4 @@
+import asyncio
 from typing import Set
 
 import httpx
@@ -33,3 +34,11 @@ class IODAManager:
                 country.code
                 for country in CountriesResponse.model_validate(response.json()).data
             }
+
+
+# async def main():
+#     print(await IODAManager.get_country_codes())
+#
+#
+# if __name__ == '__main__':
+#     asyncio.run(main())
